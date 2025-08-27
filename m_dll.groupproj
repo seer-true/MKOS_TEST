@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{EAD01908-F3D4-49CC-9A88-8D9A6D051287}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="mkos.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SearchFile.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Arch7zip.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mkos">
+        <MSBuild Projects="mkos.dproj"/>
+    </Target>
+    <Target Name="mkos:Clean">
+        <MSBuild Projects="mkos.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mkos:Make">
+        <MSBuild Projects="mkos.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SearchFile">
+        <MSBuild Projects="SearchFile.dproj"/>
+    </Target>
+    <Target Name="SearchFile:Clean">
+        <MSBuild Projects="SearchFile.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SearchFile:Make">
+        <MSBuild Projects="SearchFile.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Arch7zip">
+        <MSBuild Projects="Arch7zip.dproj"/>
+    </Target>
+    <Target Name="Arch7zip:Clean">
+        <MSBuild Projects="Arch7zip.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Arch7zip:Make">
+        <MSBuild Projects="Arch7zip.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mkos;SearchFile;Arch7zip"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mkos:Clean;SearchFile:Clean;Arch7zip:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mkos:Make;SearchFile:Make;Arch7zip:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
